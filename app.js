@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const https = require("node:https");
 const axios = require("axios");
+const apiKey=require("./secret");
 
 const app = express();
 
@@ -19,9 +20,8 @@ let errorHandling={
 }
 
 app.get("/", async (req, res) => {
-  const APIkey = "32213870dedad3ec753674d18e967a2f";
   let cityName = city;
-  const URL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIkey}&units=metric`;
+  const URL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
   try {
     let response = await axios.get(URL);
     let weatherData = response.data;
